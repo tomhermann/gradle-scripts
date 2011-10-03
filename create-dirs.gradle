@@ -1,0 +1,10 @@
+/***
+See: http://issues.gradle.org/browse/GRADLE-1289
+*/
+
+ 
+task "create-dirs" << {
+	project.sourceSets.all*.allSource.sourceTrees.srcDirs.flatten().each { dir ->
+		dir.mkdirs()
+	}
+}
