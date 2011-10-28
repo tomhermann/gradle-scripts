@@ -8,7 +8,7 @@ task "create-dirs" << {
      webAppDir.mkdirs() 
    }
    println sourceSets.all*.hasProperty('groovy')
-   if(sourceSets.all*.hasProperty('groovy')){
+   if(sourceSets.all*.hasProperty('groovy').contains(true)){
     sourceSets.all*.groovy.srcDirs*.each { it.mkdirs() }   
    }else{
     sourceSets.all*.java.srcDirs*.each { it.mkdirs() }   
