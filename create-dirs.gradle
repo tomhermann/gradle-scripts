@@ -3,7 +3,13 @@ See: http://issues.gradle.org/browse/GRADLE-1289
 */
 
  
-task "create-dirs"  {
+task "create-dirs" << {
+   def createDir = {
+    println "> creating $it"
+    it.mkdirs()
+   }
+   
+
    if(project.hasProperty('webAppDir')){
      createDir(webAppDir)
    }
@@ -13,10 +19,5 @@ task "create-dirs"  {
     sourceSets.all*.java.srcDirs*.each createDir
    }
    sourceSets.all*.resources.srcDirs*.each createDir
-}
-
-def createDir = {
- println "> creating $it"
- it.mkdirs()
 }
 
