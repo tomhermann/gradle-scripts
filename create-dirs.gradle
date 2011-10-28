@@ -5,14 +5,18 @@ See: http://issues.gradle.org/browse/GRADLE-1289
  
 task "create-dirs" << {
    if(project.hasProperty('webAppDir')){
-     webAppDir.mkdirs() 
+     createDir(webAppDir)
    }
-   println sourceSets.all*.hasProperty('groovy')
    if(sourceSets.all*.hasProperty('groovy').contains(true)){
-    sourceSets.all*.groovy.srcDirs*.each { it.mkdirs() }   
+    sourceSets.all*.groovy.srcDirs*.each createDir
    }else{
-    sourceSets.all*.java.srcDirs*.each { it.mkdirs() }   
+    sourceSets.all*.java.srcDirs*.each createDir
    }
-   sourceSets.all*.resources.srcDirs*.each { it.mkdirs() }
+   sourceSets.all*.resources.srcDirs*.each createDir
+}
+
+def createDir = {
+ println "> creating $it"
+ it.mkdirs()
 }
 
