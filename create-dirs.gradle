@@ -5,13 +5,13 @@ Updated for 1.0-milestone-9
 */
 
 def createDir = {
-	println "> creating $it"; it.mkdirs()
+   println "> creating $it"; it.mkdirs()
 }
 
 task "create-dirs" << {
-	sourceSets.all { set -> set.allSource.srcDirs.each createDir }
-	
-	if(project.hasProperty('webAppDir')){ 
-		createDir(webAppDir) 
-	}
+   sourceSets.all { set -> set.allSource.srcDirs.each createDir }
+
+   if(project.hasProperty('webAppDir')){ 
+      createDir(webAppDir) 
+   }
 }
